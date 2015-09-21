@@ -13,6 +13,20 @@ for (var i = 0; i < tweets.length; i++) {
   unlikeActionDiv.onclick = function(event) {
     event.preventDefault();
     console.log('clicked');
+
+    data = {
+      "aa": 77,
+      "bb": 20
+    };
+
+    var request = new XMLHttpRequest();
+    request.open('POST', 'http://localhost:3000', true);
+    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+    request.setRequestHeader('_csrf_token', 'fdaskfjaslkdfjsalkjfslakjdflsdnkjdnvkjvnklxjcvnsdkljfndsalkjfngasdlkj');
+
+    console.log(request);
+
+    request.send(data);
   };
 
   unlikeActionDiv.appendChild(thumbsDownImg);
