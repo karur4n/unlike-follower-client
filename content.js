@@ -1,17 +1,20 @@
-
 var tweets = document.getElementsByClassName('original-tweet js-original-tweet js-stream-tweet');
+
+var unlikeActionDiv = document.createElement('div');
+unlikeActionDiv.setAttribute('id', 'ProfileTweet-action--unlike');
+unlikeActionDiv.setAttribute('class', 'ProfileTweet-action');
+
+var thumbsDownImg = document.createElement('img');
+thumbsDownImg.src = chrome.extension.getURL('./images/content/thumbs-down.png');
+
+unlikeActionDiv.appendChild(thumbsDownImg);
 
 for (var i = 0; i < tweets.length; i++) {
   var actionList = tweets[i].querySelector('.ProfileTweet-actionList');
-  var unlikeActionDiv = document.createElement('div');
-  unlikeActionDiv.setAttribute('id', 'ProfileTweet-action--unlike');
-  unlikeActionDiv.setAttribute('class', 'ProfileTweet-action');
 
-  var thumbsDownImg = document.createElement('img');
-  thumbsDownImg.src = chrome.extension.getURL('./images/content/thumbs-down.png');
+  var unlikeButton = unlikeActionDiv.cloneNode(true);
 
   unlikeActionDiv.onclick = function(event) {
-    event.preventDefault();
     console.log('clicked');
 
     data = {
@@ -29,6 +32,5 @@ for (var i = 0; i < tweets.length; i++) {
     request.send(data);
   };
 
-  unlikeActionDiv.appendChild(thumbsDownImg);
-  actionList.appendChild(unlikeActionDiv);
+  actionList.appendChild(unlikeButton);
 }
